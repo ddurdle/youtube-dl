@@ -72,6 +72,8 @@ class NBCIE(AdobePassIE):
 
     def _real_extract(self, url):
         permalink, video_id = re.match(self._VALID_URL, url).groups()
+        import string
+        permalink = string.replace(permalink,'https','http')
         video_data = self._download_json(
             'https://api.nbc.com/v3/videos', video_id, query={
                 'filter[permalink]': permalink,
